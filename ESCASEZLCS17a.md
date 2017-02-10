@@ -5,7 +5,7 @@
 
 #### Datos generales del mapa.
 ###### Cita oficial:
-Texto aquí
+ 
 
 ###### Resumen:
 En este mapa se expresa el nivel de escasez de agua (horas de entrega / semana) a nivel de AGEB.
@@ -44,7 +44,7 @@ Se normaliza
 ```MAX=`r.stats -1n AGEB_tand | gawk 'NR==1 { MAX=$1; next } $1 > MAX { MAX=$1 } END{ print MAX }'´ ```
 
 ```r.mapcalc "AGEB_tand = (AGEB_tand - "$MIN")/("$MAX" - "$MIN")" --o```   
-El concepto es inverso, la escasez es mayor cuando tienen menos horas de agua
+El concepto es inverso, la escasez es mayor cuando tienen menos horas de agua   
 ```r.mapcalc 'AGEB_tand =  1 - AGEB_tand' --o```   
 Se reclasifica    
 ```r.mapcalc 'AGEB_tand = if(AGEB_tand<=0.0625,0.0625,if(AGEB_tand<=0.125,0.125,if(AGEB_tand<=0.25,0.25,if(AGEB_tand<=0.5,0.5,1.00))))' --o```     
