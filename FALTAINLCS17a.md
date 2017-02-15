@@ -37,11 +37,6 @@ Se reclasifica el mapa de AGEB
 Se convierte a float   
 ```r.mapcalc 'AGEB_falta = float(Viv_saent)' --o```    
 Se normaliza   
-``` MIN=`r.stats -1n AGEB_falta | gawk 'NR==1 { MIN=$1; next }  $1 < MIN { MIN=$1 } END{ print MIN }'` ```    
-``` MAX=`r.stats -1n AGEB_falta | gawk 'NR==1 { MAX=$1; next } $1 > MAX { MAX=$1 } END{ print MAX }'` ```     
-``` r.mapcalc "AGEB_falta = (AGEB_falta - "$MIN")/("$MAX" - "$MIN")" --o ```    
-``` r.colors map=AGEB_falta color=rainbow```    
-
 Los datos de algunas AGEB superan las 1000 viviendas, alguna llega a 2009, para aumentar la heterogeneidad de la clasificación se clasificaran directamente con el valor 1 las AGEB que tengan más de 750 viviendas sin agua entubada ese valor es el promedio de viviendas por AGEB
 
 ```r.mapcalc 'AGEB_falta = float(Viv_saent)' --o```
