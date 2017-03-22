@@ -8,7 +8,7 @@
 Texto aquí
 
 ###### Resumen:
-En este mapa se expresa el nivel de falta de infraestructura de abastecimiento de agua, se refiere al número de viviendas sin agua entubada en el ámbito de la vivienda en cada AGEB, los datos corresponden al censo de población y vievienda de 2010
+En este mapa se expresa el nivel de falta de infraestructura de abastecimiento de agua, se refiere al número de viviendas sin agua entubada en el ámbito de la vivienda en cada AGEB, los datos corresponden al censo de población y vivienda de 2010
 
 ######  Nivel de avance:
 Aún en procesamiento
