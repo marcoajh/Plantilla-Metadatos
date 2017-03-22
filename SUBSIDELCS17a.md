@@ -8,7 +8,7 @@
 Texto aquí
 
 ###### Resumen:
-En este mapa se expresa la prsencia del fenómeno de subsidencia a nivel de AGEB
+En este mapa se expresa la presencia del fenómeno de subsidencia a nivel de AGEB
 
 ######  Nivel de avance:
 Aún en procesamiento
