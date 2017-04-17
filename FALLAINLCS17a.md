@@ -31,7 +31,7 @@ Los datos de antigüedad del crecimiento de la macha urbana fueron proporcionado
 Los datos de subsidencia porvienen de un estudio contratado por la Subdirección General Técnica, Gerencia de Aguas Subterráneas de la CONAGUA (Contrato: CNA-SGT-GAS-19-2011 "Estudio de impacto por la subsidencia ocasionada por la extracción, uso y manejo de los recursos hídricos en los acuíferos Texcoco y Chalco-Amecameca, Distrito Federal y Estado de México”.) Consultor: Centro GEO (CONACYT) Año: 2011
 
 **Proceso en GRASS**     
-Se importa la capa de antigüedad de la mancha urbana   
+Se importa la capa de antigüedad de la mancha urbana    
  ```v.import input=/home/marco/CVM_SIG/Urbano_Crecim_Hist/UTM/Crec_Urb.shp layer=Crec_Urb output=Crec_Urb```   
 Se convierte a raster
  ```v.to.rast input=Crec_Urb@Marco output=Crec_Urb_hist use=attr attribute_column=CLAVE_EDAD label_column=EDAD```
@@ -48,12 +48,14 @@ El comando de reclasificación no reconoce decimales, por ello se efectua la sig
 
 Se normaliza la capa de velocidad de subsidencia por AGEB    
 ```MIN=`r.stats -1n AGEB_subsidencia | gawk 'NR==1 { MIN=$1; next }  $1 < MIN { MIN=$1 } END{ print MIN }'````    
-```MAX=`r.stats -1n AGEB_subsidencia | gawk 'NR==1 { MAX=$1; next } $1 > MAX { MAX=$1 } END{ print MAX }'````     
+
+```MAX=`r.stats -1n AGEB_subsidencia | gawk 'NR==1 { MAX=$1; next } $1 > MAX { MAX=$1 } END{ print MAX }'````    
+
 ```r.mapcalc "subsid = ((AGEB_subsidencia - "$MIN")/("$MAX" - "$MIN"))" --o```     
 
-Se genera la capa de falla
+Se genera la capa de falla    
 ```r.mapcalc 'AGEB_falla = (AGEB_antiguedad*0.5)+(subsid*0.5)' --o```     
-Se normaliza     
+Se normaliza    
 ```MIN=`r.stats -1n AGEB_falla | gawk 'NR==1 { MIN=$1; next }  $1 < MIN { MIN=$1 } END{ print MIN }'````    
 ```MAX=`r.stats -1n AGEB_falla | gawk 'NR==1 { MAX=$1; next } $1 > MAX { MAX=$1 } END{ print MAX }'````   
 ```r.mapcalc "AGEB_falla = ((AGEB_falla - "$MIN")/("$MAX" - "$MIN"))" --o```   
