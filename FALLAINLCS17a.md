@@ -33,7 +33,7 @@ Los datos de subsidencia porvienen de un estudio contratado por la Subdirección
 **Proceso en GRASS**     
 Se importa la capa de antigüedad de la mancha urbana    
  ```v.import input=/home/marco/CVM_SIG/Urbano_Crecim_Hist/UTM/Crec_Urb.shp layer=Crec_Urb output=Crec_Urb```   
-Se convierte a raster
+Se convierte a raster     
  ```v.to.rast input=Crec_Urb@Marco output=Crec_Urb_hist use=attr attribute_column=CLAVE_EDAD label_column=EDAD```
 
 Se reclasifica el mapa de AGEB para asignarle a cada AGEB un dato de antigüedad     
