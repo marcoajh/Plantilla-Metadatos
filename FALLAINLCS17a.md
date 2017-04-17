@@ -47,17 +47,15 @@ El comando de reclasificación no reconoce decimales, por ello se efectua la sig
 ```r.mapcalc 'AGEB_antiguedad = AGEB_antiguedad*0.000001' --o```    
 
 Se normaliza la capa de velocidad de subsidencia por AGEB    
-```MIN=`r.stats -1n AGEB_subsidencia | gawk 'NR==1 { MIN=$1; next }  $1 < MIN { MIN=$1 } END{ print MIN }'````    
-
-```MAX=`r.stats -1n AGEB_subsidencia | gawk 'NR==1 { MAX=$1; next } $1 > MAX { MAX=$1 } END{ print MAX }'````    
-
+```MIN=`r.stats -1n AGEB_subsidencia | gawk 'NR==1 { MIN=$1; next }  $1 < MIN { MIN=$1 } END{ print MIN }'` ```    
+```MAX=`r.stats -1n AGEB_subsidencia | gawk 'NR==1 { MAX=$1; next } $1 > MAX { MAX=$1 } END{ print MAX }'` ```    
 ```r.mapcalc "subsid = ((AGEB_subsidencia - "$MIN")/("$MAX" - "$MIN"))" --o```     
 
 Se genera la capa de falla    
 ```r.mapcalc 'AGEB_falla = (AGEB_antiguedad*0.5)+(subsid*0.5)' --o```     
 Se normaliza    
-```MIN=`r.stats -1n AGEB_falla | gawk 'NR==1 { MIN=$1; next }  $1 < MIN { MIN=$1 } END{ print MIN }'````    
-```MAX=`r.stats -1n AGEB_falla | gawk 'NR==1 { MAX=$1; next } $1 > MAX { MAX=$1 } END{ print MAX }'````   
+```MIN=`r.stats -1n AGEB_falla | gawk 'NR==1 { MIN=$1; next }  $1 < MIN { MIN=$1 } END{ print MIN }'` ```     
+```MAX=`r.stats -1n AGEB_falla | gawk 'NR==1 { MAX=$1; next } $1 > MAX { MAX=$1 } END{ print MAX }'` ```     
 ```r.mapcalc "AGEB_falla = ((AGEB_falla - "$MIN")/("$MAX" - "$MIN"))" --o```   
 ```r.mapcalc 'FALLAINLCS17a = AGEB_falla'```
 
